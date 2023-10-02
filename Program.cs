@@ -16,6 +16,7 @@ namespace FileManager
 
             while (true)
             {
+                //Abracadabra
                 Console.WriteLine();
                 Console.WriteLine("Выберите действие:");
                 Console.WriteLine("1. Просмотр содержимого директории");
