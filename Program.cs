@@ -9,77 +9,86 @@ namespace FileManager
 {
     class Program
     {
+        static string currentDirectory = Directory.GetCurrentDirectory();
+
         static void Main(string[] args)
         {
-            string currentDirectory = Directory.GetCurrentDirectory();
             Console.WriteLine("Текущая директория: " + currentDirectory);
 
             while (true)
             {
-                //Abracadabra
-                Console.WriteLine();
-                Console.WriteLine("Выберите действие:");
-                Console.WriteLine("1. Просмотр содержимого директории");
-                Console.WriteLine("2. Создание новой директории");
-                Console.WriteLine("3. Удаление директории или файла");
-                Console.WriteLine("4. Переименование директории или файла");
-                Console.WriteLine("5. Копирование файла или директории");
-                Console.WriteLine("6. Перемещение файла или директории");
-                Console.WriteLine("7. Просмотр свойств файла или директории");
-                Console.WriteLine("8. Поиск файлов по имени или расширению");
+                PrintMenu();
 
                 int choice = int.Parse(Console.ReadLine());
+                GoToChoise(choice);          
+            }
+        }
 
-                switch (choice)
-                {
-                    case 1:
-                        ListDirectoryContents(currentDirectory);
-                        break;
-                    case 2:
-                        Console.Write("Введите имя новой директории: ");
-                        string newDirectoryName = Console.ReadLine();
-                        CreateDirectory(currentDirectory, newDirectoryName);
-                        break;
-                    case 3:
-                        Console.Write("Введите имя директории или файла для удаления: ");
-                        string nameToDelete = Console.ReadLine();
-                        DeleteFileOrDirectory(currentDirectory, nameToDelete);
-                        break;
-                    case 4:
-                        Console.Write("Введите текущее имя директории или файла: ");
-                        string currentName = Console.ReadLine();
-                        Console.Write("Введите новое имя: ");
-                        string newName = Console.ReadLine();
-                        RenameFileOrDirectory(currentDirectory, currentName, newName);
-                        break;
-                    case 5:
-                        Console.Write("Введите имя файла или директории для копирования: ");
-                        string nameToCopy = Console.ReadLine();
-                        Console.Write("Введите путь к новому месту назначения: ");
-                        string destinationPath = Console.ReadLine();
-                        CopyFileOrDirectory(currentDirectory, nameToCopy, destinationPath);
-                        break;
-                    case 6:
-                        Console.Write("Введите имя файла или директории для перемещения: ");
-                        string nameToMove = Console.ReadLine();
-                        Console.Write("Введите путь к новому месту назначения: ");
-                        string newLocation = Console.ReadLine();
-                        MoveFileOrDirectory(currentDirectory, nameToMove, newLocation);
-                        break;
-                    case 7:
-                        Console.Write("Введите имя файла или директории для просмотра свойств: ");
-                        string nameToView = Console.ReadLine();
-                        ViewProperties(currentDirectory, nameToView);
-                        break;
-                    case 8:
-                        Console.Write("Введите имя файла или расширение для поиска: ");
-                        string searchQuery = Console.ReadLine();
-                        SearchFiles(currentDirectory, searchQuery);
-                        break;
-                    default:
-                        Console.WriteLine("Некорректный выбор. Попробуйте еще раз.");
-                        break;
-                }
+        private static void PrintMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Выберите действие:");
+            Console.WriteLine("1. Просмотр содержимого директории");
+            Console.WriteLine("2. Создание новой директории");
+            Console.WriteLine("3. Удаление директории или файла");
+            Console.WriteLine("4. Переименование директории или файла");
+            Console.WriteLine("5. Копирование файла или директории");
+            Console.WriteLine("6. Перемещение файла или директории");
+            Console.WriteLine("7. Просмотр свойств файла или директории");
+            Console.WriteLine("8. Поиск файлов по имени или расширению");
+        }
+
+        private static void GoToChoise(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    ListDirectoryContents(currentDirectory);
+                    break;
+                case 2:
+                    Console.Write("Введите имя новой директории: ");
+                    string newDirectoryName = Console.ReadLine();
+                    CreateDirectory(currentDirectory, newDirectoryName);
+                    break;
+                case 3:
+                    Console.Write("Введите имя директории или файла для удаления: ");
+                    string nameToDelete = Console.ReadLine();
+                    DeleteFileOrDirectory(currentDirectory, nameToDelete);
+                    break;
+                case 4:
+                    Console.Write("Введите текущее имя директории или файла: ");
+                    string currentName = Console.ReadLine();
+                    Console.Write("Введите новое имя: ");
+                    string newName = Console.ReadLine();
+                    RenameFileOrDirectory(currentDirectory, currentName, newName);
+                    break;
+                case 5:
+                    Console.Write("Введите имя файла или директории для копирования: ");
+                    string nameToCopy = Console.ReadLine();
+                    Console.Write("Введите путь к новому месту назначения: ");
+                    string destinationPath = Console.ReadLine();
+                    CopyFileOrDirectory(currentDirectory, nameToCopy, destinationPath);
+                    break;
+                case 6:
+                    Console.Write("Введите имя файла или директории для перемещения: ");
+                    string nameToMove = Console.ReadLine();
+                    Console.Write("Введите путь к новому месту назначения: ");
+                    string newLocation = Console.ReadLine();
+                    MoveFileOrDirectory(currentDirectory, nameToMove, newLocation);
+                    break;
+                case 7:
+                    Console.Write("Введите имя файла или директории для просмотра свойств: ");
+                    string nameToView = Console.ReadLine();
+                    ViewProperties(currentDirectory, nameToView);
+                    break;
+                case 8:
+                    Console.Write("Введите имя файла или расширение для поиска: ");
+                    string searchQuery = Console.ReadLine();
+                    SearchFiles(currentDirectory, searchQuery);
+                    break;
+                default:
+                    Console.WriteLine("Некорректный выбор. Попробуйте еще раз.");
+                    break;
             }
         }
 
